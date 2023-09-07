@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./home.css">
+
+    <style>
+        *
+{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+.container
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height:100vh;
+    width:100vw;
+    background-color: bisque;
+}
+
+.contain
+{
+    height:65vh;
+    width:20vw;
+    border-radius: 10px;
+    background-color: rgb(26, 227, 160);
+}
+
+.weathericon
+{
+    height:40%;
+    width:100%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    background-color: white;
+    border-radius: 10px 10px 0px 0px;
+}
+
+.weathericon i
+{
+   font-size: 70px;
+   animation: icon  4s infinite linear;
+}
+
+@keyframes icon {
+
+    0%
+    { 
+               transform:scale(1)
+    }
+
+    50%
+    {
+        transform: scale(1.3);
+    }
+
+    100%
+    {
+        transform: scale(1);
+    }
+    
+}
+
+
+.weatherState
+{
+    width:100%;
+    height:30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.weatherState i
+{
+    font-size:40px;
+}
+
+.weatherState h1
+{
+    display: inline-block;
+}
+
+.weatherState h3
+{
+    display: block !important;
+    color:white;
+}
+
+.weathertemp
+{
+    margin-top:-30px;
+}
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Weather App  By Paras</title>
+</head>
+<body>
+ 
+    <div class="container">
+
+        <div class="contain">
+         
+            <div class="weathericon">
+               <i class="fa fa-cloud"></i>
+            </div>
+        
+           
+            <div class="weatherState">
+
+                <i class="fa fa-street-view"></i>
+                <span><h1>{%city%},IN</h1></span>
+               
+                <h3 class="date">Wed | oct 23 | 10:49 PM</h3>
+                
+            </div>
+
+            <div class="weathertemp weatherState">
+
+                <h1>{%tempval%}°C</h1>
+                <h3>Min {%tempmin%}°C | Max {%tempmax%}°C</h3>
+            </div>
+    </div>
+
+    <script>
+        const d= document.querySelector('.date');
+
+const t=new Date();
+
+const week= ['sun','mon','tue','wed','thu','fri','sat','sun'];
+const month=['jan','feb','mar','apr','may','jun','jul','aug','sep','oct','nov','dec']
+
+let day;
+if(t.getDate()<=10)
+{
+    day=0+t.getDate();
+}
+else
+{
+    day=t.getDate();
+}
+
+let hours;
+
+if(t.getHours()>12)
+{
+    hours=t.getHours()-12;
+}
+else
+{
+    hours=t.getHours();
+}
+
+if(hours<10)
+{
+    hours='0'+hours;
+}
+
+let min;
+
+if(t.getMinutes()<10)
+{
+    min='0'+t.getMinutes();
+}
+else
+{
+    min=t.getMinutes();
+}
+
+let seq;
+
+if(t.getHours()>=12)
+{
+    seq='PM';
+}
+else
+{
+    seq="AM";
+}
+d.innerHTML=week[t.getDay()] +' | '+month[t.getMonth()]+" "+day +" | "+hours+":"+min+" "+seq;
+
+    </script>
+</body>
+</html>
